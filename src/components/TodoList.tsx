@@ -10,11 +10,11 @@ interface TodoListProps {
 export const TodoList: React.SFC<TodoListProps> = props => {
   return (
     <ul>
-      {props.todos.map((todo, index) => (
+      {props.todos.map(todo => (
         <Todo
           todo={todo}
-          onclick={(): void => props.onTodoClick(index)}
-          key={index}
+          onclick={(): void => props.onTodoClick(todo.id)}
+          key={todo.id}
         ></Todo>
       ))}
     </ul>

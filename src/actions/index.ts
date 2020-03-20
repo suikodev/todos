@@ -14,6 +14,7 @@ export const enum TYPES {
 export interface AddTodoAction {
   type: TYPES.AddTodo;
   text: string;
+  id: number;
 }
 
 export interface ToggleTodoAction {
@@ -31,9 +32,11 @@ export type TodoActionTypes =
   | ToggleTodoAction
   | SetVisibilityFilterAction;
 
+let nextTodoId = 0;
 export function addTodo(text: string): AddTodoAction {
   return {
     type: TYPES.AddTodo,
+    id: nextTodoId++,
     text
   };
 }

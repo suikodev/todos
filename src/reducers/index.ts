@@ -5,6 +5,7 @@ import { combineReducers } from "redux";
 export interface TodoState {
   text: string;
   completed: boolean;
+  id: number;
 }
 
 export interface GlobalState {
@@ -18,7 +19,7 @@ const todos = (
 ): Array<TodoState> => {
   switch (action.type) {
     case Actions.TYPES.AddTodo:
-      return [...state, { text: action.text, completed: false }];
+      return [...state, { text: action.text, completed: false, id: action.id }];
     case Actions.TYPES.ToggleTodo:
       return state.map((todo, index) =>
         index === action.index ? { ...todo, completed: !todo.completed } : todo
@@ -32,10 +33,11 @@ const visibilityFilter = (
   state: Actions.FILTERS = Actions.FILTERS.SHOW_ALL,
   action: Actions.SetVisibilityFilterAction
 ): Actions.FILTERS => {
-  if ((action.type = Actions.TYPES.SetVisibilityFilter)) {
-    return state;
-  } else {
-    return state;
+  switch (action.type) {
+    case Actions.TYPES.SetVisibilityFilter:
+      return action.filter;
+    default:
+      return state;
   }
 };
 

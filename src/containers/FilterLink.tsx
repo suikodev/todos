@@ -17,10 +17,11 @@ const mapStateToProps = (
 };
 
 const mapDispatchToProps = (
-  dispatch: React.Dispatch<SetVisibilityFilterAction>
+  dispatch: React.Dispatch<SetVisibilityFilterAction>,
+  ownProps: { filter: FILTERS }
 ): { onclick: (index: number) => void } => {
   return {
-    onclick: (index): void => dispatch(setVisibilityFilter(index))
+    onclick: (): void => dispatch(setVisibilityFilter(ownProps.filter))
   };
 };
 

@@ -3,6 +3,7 @@ import * as React from "react";
 export const Link: React.FC<{
   active: boolean;
   onclick: () => void;
+  children: string;
 }> = props => {
   if (props.active) {
     return <span>{props.children}</span>;
